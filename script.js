@@ -61,20 +61,28 @@ function swapPhoto(){
 noBtn.addEventListener("click", () => {
   clicks += 1;
 
-  // If we've passed the last stage, force redirect
+  // If we've gone past the last stage, redirect to Yes
   if (clicks > stages.length) {
     question.textContent = "Decision recorded.";
     subtitle.textContent = "Redirecting to the correct outcome…";
-
-    counter.textContent = "";
-
-    // small pause so he reads it
-    setTimeout(() => {
-      window.location.href = "yes.html";
-    }, 1200);
-
+    setTimeout(() => (window.location.href = "yes.html"), 1200);
     return;
   }
+
+  // Normal stage updates
+  const idx = clicks - 1;
+  question.textContent = stages[idx].q;
+  subtitle.textContent = stages[idx].s;
+
+  swapPhoto();
+  growYesButton();
+
+  // ✅ add this:
+  if (clicks === stages.length) {
+    noBtn.style.display = "none";
+  }
+});
+
 
   // Normal No-cycle behavior
   const idx = clicks - 1;
