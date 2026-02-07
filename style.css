@@ -1,43 +1,194 @@
-body {
-  margin: 0;
-  min-height: 100vh;
-  display: grid;
-  place-items: center;
-  background: linear-gradient(135deg, #ffe3ec, #fff7d6);
-  font-family: system-ui, sans-serif;
+:root{
+  --bg1:#d9ecff;   /* soft blue */
+  --bg2:#f6fbff;   /* near-white blue */
+  --card: rgba(255,255,255,.78);
+  --text:#14161a;
+  --muted:#4f5866;
+  --line: rgba(0,0,0,.08);
+  --shadow: 0 22px 70px rgba(0,0,0,.14);
+
+  --yes1:#1b6cff;
+  --yes2:#3f8cff;
+  --no:#15181f;
+
+  --heart:#ff2d55; /* red for the single heart */
 }
 
-.card {
-  width: min(520px, 92vw);
-  background: white;
-  border-radius: 24px;
-  padding: 22px;
-  box-shadow: 0 20px 50px rgba(0,0,0,0.12);
-  text-align: center;
+*{ box-sizing:border-box; }
+html,body{ height:100%; }
+
+body{
+  margin:0;
+  font-family: ui-rounded, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  color:var(--text);
+  overflow-x:hidden;
+  background:
+    radial-gradient(1100px 520px at 12% 12%, rgba(255,255,255,.95), transparent 62%),
+    radial-gradient(900px 420px at 88% 22%, rgba(255,255,255,.75), transparent 58%),
+    linear-gradient(135deg, var(--bg1), var(--bg2));
 }
 
-.photo {
-  width: 100%;
-  height: 320px;
-  object-fit: cover;
-  border-radius: 18px;
+/* Floating hearts background (subtle) */
+.hearts{
+  position:fixed;
+  inset:0;
+  pointer-events:none;
+  overflow:hidden;
+  z-index:0;
+}
+.heart{
+  position:absolute;
+  bottom:-80px;
+  font-size:18px;
+  opacity:.18;
+  animation: floatUp linear infinite;
+  filter: blur(.2px);
+}
+@keyframes floatUp{
+  to{
+    transform: translateY(-110vh) translateX(var(--drift, 0px)) rotate(var(--rot, 0deg));
+    opacity:0;
+  }
 }
 
-.buttons {
+.wrap{
+  min-height:100%;
+  display:grid;
+  place-items:center;
+  padding: 28px 14px;
+  position:relative;
+  z-index:1;
+}
+
+.card{
+  width:min(660px, 94vw);
+  background:var(--card);
+  backdrop-filter: blur(10px);
+  border: 1px solid var(--line);
+  border-radius: 26px;
+  box-shadow: var(--shadow);
+  padding: 18px 18px 22px;
+}
+
+.badge{
+  display:inline-flex;
+  align-items:center;
+  padding: 8px 12px;
+  border-radius:999px;
+  background: rgba(27,108,255,.10);
+  border: 1px solid rgba(27,108,255,.18);
+  color: #1b4fb8;
+  font-weight:650;
+  font-size:.95rem;
+}
+
+.header{
+  display:flex;
+  justify-content:center;
+  margin-bottom:12px;
+}
+
+.photo{
+  width:100%;
+  height: 350px;
+  object-fit:cover;
+  border-radius: 20px;
+  box-shadow: 0 14px 35px rgba(0,0,0,.12);
+  border: 1px solid rgba(0,0,0,.06);
+}
+
+h1{
+  font-size: clamp(1.75rem, 2.6vw, 2.35rem);
+  margin: 12px 0 4px;
+  letter-spacing: -.02em;
+}
+
+.subtitle{
+  margin:0;
+  color:var(--muted);
+  font-size: 1.08rem;
+  line-height: 1.4;
+}
+
+.hint{
+  margin: 10px 0 0;
+  color: rgba(0,0,0,.52);
+  font-size:.95rem;
+}
+
+.controls{
   margin-top: 16px;
-  display: flex;
+  display:flex;
   gap: 12px;
-  justify-content: center;
+  justify-content:center;
+  flex-wrap:wrap;
+  position: relative;
+  min-height: 72px;
 }
 
-.btn {
+.btn{
+  border:0;
+  cursor:pointer;
   padding: 12px 18px;
   border-radius: 999px;
-  text-decoration: none;
-  font-size: 1rem;
-  border: none;
-  cursor: pointer;
+  font-size: 1.05rem;
+  font-weight: 700;
+  text-decoration:none;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  min-width: 140px;
+  transition: transform .12s ease, box-shadow .12s ease, filter .12s ease;
+  user-select:none;
 }
 
-.yes { background: #ff3d7f; color: white; }
-.no { background: #222; color: white; }
+.btn:active{ transform: translateY(1px) scale(.99); }
+
+.btn.yes{
+  color:white;
+  background: linear-gradient(135deg, var(--yes1), var(--yes2));
+  box-shadow: 0 16px 36px rgba(27,108,255,.26);
+}
+.btn.yes:hover{
+  filter: brightness(1.02);
+  box-shadow: 0 18px 42px rgba(27,108,255,.32);
+}
+
+.btn.no{
+  color:white;
+  background: rgba(21,24,31,.94);
+  box-shadow: 0 16px 36px rgba(0,0,0,.22);
+}
+.btn.no:hover{ filter: brightness(1.03); }
+
+.count{
+  margin-top: 12px;
+  text-align:center;
+  color: rgba(0,0,0,.52);
+  font-size: .95rem;
+}
+
+/* Yes page */
+.yay{
+  text-align:center;
+  padding: 6px 8px 4px;
+}
+.big{
+  font-size: clamp(2.0rem, 3.2vw, 2.8rem);
+  margin: 8px 0 6px;
+}
+.note{
+  color: var(--muted);
+  font-size: 1.08rem;
+  margin: 0 0 12px;
+}
+.heart-red{
+  color: var(--heart);
+  font-weight: 800;
+}
+
+/* Mobile */
+@media (max-width: 520px){
+  .photo{ height: 285px; }
+  .btn{ min-width: 150px; }
+}
