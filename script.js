@@ -9,7 +9,7 @@ const controls = document.getElementById("controls");
 let clicks = 0;
 
 // Configure the "No click" photo set (put these files in the same folder)
-const noPhotos = ["no1.jpg", "no2.jpg", "no3.jpg", "no4.jpg", "no5.jpg"];
+const noPhotos = ["no1.jpeg", "no2.jpeg", "no3.jpeg", "no4.jpeg", "no5.jpeg"];
 
 // Witty, not cringy, no emojis
 const stages = [
