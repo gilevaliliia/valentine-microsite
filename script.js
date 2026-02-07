@@ -24,7 +24,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const stages = [
     { q: "Interesting choice.", s: "I love the confidence, even if I disagree with the decision." },
     { q: "Let’s pause for a second.", s: "This feels like one of those moments you’ll later regret..." },
-    { q: "Just to be clear.", s: "One button leads to a very nice Valentine’s Day. The other leads to a quiet but lasting judgment." },
+    { q: "Just to be clear.", s: "One button leads to a very nice Valentine’s Day. The other leads to an open and lasting judgment." },
     { q: "We can still fix this.", s: "I’m being very patient here (like Henry), considering the circumstances." },
     { q: "Final review.", s: "I’ve taken your feedback into account and remain confident that “Yes” is the correct answer." },
   ];
