@@ -85,7 +85,3 @@ noBtn.addEventListener("click", () => {
   swapPhoto();
   growYesButton();
 });
-
-window.addEventListener("load", () => {
-  controls.style.position = "relative";
-});
