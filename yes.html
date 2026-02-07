@@ -3,20 +3,51 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>YAY!!</title>
+  <title>Approved</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <main class="card">
-    <h1>YEEEY!!! 🥰💖</h1>
-    <p>Best decision ever. See you on Valentine’s 😌</p>
+  <div class="hearts" aria-hidden="true" id="hearts"></div>
 
-    <div class="confetti">
-      <span>🎉</span><span>💘</span><span>✨</span><span>🍓</span><span>🎉</span>
-      <span>💖</span><span>🌹</span><span>✨</span><span>💘</span><span>🎉</span>
-    </div>
+  <div class="wrap">
+    <main class="card yay">
+      <div class="header">
+        <div class="badge">Correct. Sensible. Attractive.</div>
+      </div>
 
-    <a class="btn yes" href="index.html">Replay</a>
-  </main>
+      <!-- Put your yes-page photo in the folder as yes.jpg -->
+      <img class="photo" src="yes.jpg" alt="Photo" />
+
+      <h1 class="big">Excellent.</h1>
+      <p class="note">
+        I have reviewed your application and I’m pleased to confirm: you’re my Valentine
+        <span class="heart-red">♥</span>
+      </p>
+
+      <a class="btn yes" href="index.html">Back</a>
+    </main>
+  </div>
+
+  <script>
+    // Keep the same subtle hearts
+    const container = document.getElementById("hearts");
+    function spawnHeart(){
+      const s = document.createElement("span");
+      s.className = "heart";
+      s.textContent = "♥";
+      const left = Math.random() * 100;
+      const dur = 7 + Math.random() * 8;
+      const size = 16 + Math.random() * 20;
+      s.style.left = left + "vw";
+      s.style.fontSize = size + "px";
+      s.style.animationDuration = dur + "s";
+      s.style.setProperty("--drift", (Math.random()*120 - 60) + "px");
+      s.style.setProperty("--rot", (Math.random()*50 - 25) + "deg");
+      container.appendChild(s);
+      setTimeout(() => s.remove(), dur * 1000);
+    }
+    for(let i=0;i<10;i++) setTimeout(spawnHeart, i*260);
+    setInterval(spawnHeart, 800);
+  </script>
 </body>
 </html>
