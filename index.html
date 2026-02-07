@@ -3,22 +3,61 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Be My Valentine?</title>
+  <title>Question</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <main class="card">
-    <img class="photo" src="us.jpeg" alt="Us" />
-    <h1 id="question">Will you be my Valentine? 💘</h1>
-    <p id="subtitle">Choose wisely 😇</p>
+  <div class="hearts" aria-hidden="true" id="hearts"></div>
 
-    <div class="buttons">
-      <a class="btn yes" href="yes.html">Yes</a>
-      <button class="btn no" id="noBtn">No</button>
-    </div>
+  <div class="wrap">
+    <main class="card">
+      <div class="header">
+        <div class="badge">A small question with large consequences</div>
+      </div>
 
-    <p class="tiny" id="counter"></p>
-  </main>
+      <!-- This image will change when "No" is clicked. Start with no1.jpg -->
+      <img class="photo" id="mainPhoto" src="no1.jpg" alt="Photo" />
+
+      <h1 id="question">Will you be my Valentine?</h1>
+      <p class="subtitle" id="subtitle">This is not a trick question. Please answer like a responsible adult.</p>
+      <p class="hint">If you press “No”, the website will become emotionally proactive.</p>
+
+      <div class="controls" id="controls">
+        <a class="btn yes" id="yesBtn" href="yes.html">Yes</a>
+        <button class="btn no" id="noBtn" type="button">No</button>
+      </div>
+
+      <div class="count" id="counter"></div>
+    </main>
+  </div>
+
+  <script>
+    // Subtle background hearts (no emojis, keep it classy)
+    const container = document.getElementById("hearts");
+    const hearts = ["♥"];
+
+    function spawnHeart(){
+      const s = document.createElement("span");
+      s.className = "heart";
+      s.textContent = hearts[0];
+
+      const left = Math.random() * 100;
+      const dur = 7 + Math.random() * 8;
+      const size = 16 + Math.random() * 18;
+
+      s.style.left = left + "vw";
+      s.style.fontSize = size + "px";
+      s.style.animationDuration = dur + "s";
+      s.style.setProperty("--drift", (Math.random()*120 - 60) + "px");
+      s.style.setProperty("--rot", (Math.random()*50 - 25) + "deg");
+
+      container.appendChild(s);
+      setTimeout(() => s.remove(), dur * 1000);
+    }
+
+    for(let i=0;i<10;i++) setTimeout(spawnHeart, i*260);
+    setInterval(spawnHeart, 800);
+  </script>
 
   <script src="script.js"></script>
 </body>
