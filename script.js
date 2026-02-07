@@ -37,22 +37,6 @@ const stages = [
 
 function clamp(n, min, max){ return Math.max(min, Math.min(max, n)); }
 
-function moveNoButtonPlayfully(){
-  // keep it playful but contained
-  const area = controls.getBoundingClientRect();
-  const btn = noBtn.getBoundingClientRect();
-
-  const maxX = area.width - btn.width;
-  const maxY = area.height - btn.height;
-
-  const x = clamp(Math.random() * maxX, 0, maxX);
-  const y = clamp(Math.random() * maxY, 0, maxY);
-
-  noBtn.style.position = "absolute";
-  noBtn.style.left = `${x}px`;
-  noBtn.style.top = `${y}px`;
-}
-
 function growYesButton(){
   // subtle growth
   const scale = clamp(1 + clicks * 0.04, 1, 1.28);
@@ -99,7 +83,6 @@ noBtn.addEventListener("click", () => {
   counter.textContent = `Times you chose chaos: ${clicks}`;
 
   swapPhoto();
-  moveNoButtonPlayfully();
   growYesButton();
 });
 
