@@ -15,11 +15,11 @@ const noPhotos = ["no1.jpeg", "no2.jpeg", "no3.jpeg", "no4.jpeg", "no5.jpeg"];
 const stages = [
   {
     q: "Interesting choice.",
-    s: "I admire the confidence, even if I disagree with the decision."
+    s: "I love the confidence, even if I disagree with the decision."
   },
   {
     q: "Let’s pause for a second.",
-    s: "This feels like one of those moments you’ll later describe as “I misclicked.”"
+    s: "This feels like one of those moments you’ll later regret..."
   },
   {
     q: "Just to be clear.",
@@ -27,7 +27,7 @@ const stages = [
   },
   {
     q: "We can still fix this.",
-    s: "I’m being remarkably patient, considering the circumstances."
+    s: "I’m being very patient here (like Henry), considering the circumstances."
   },
   {
     q: "Final review.",
